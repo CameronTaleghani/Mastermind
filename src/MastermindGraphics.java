@@ -205,6 +205,51 @@ public class MastermindGraphics extends JComponent
                 g.setColor(Color.DARK_GRAY);
                 g.fillRect(0, 0, 885, 800);
 
+                int Xtemp = 320;
+                for (int i = 0; i < computerSequence.getColorSequence().size(); i++)
+                {
+                    int color = computerSequence.getColorSequence().get(i);
+                    switch (color)
+                    {
+                        case 0:
+                        {
+                            g.setColor(Color.GRAY);
+                            break;
+                        }
+                        case 1:
+                        {
+                            g.setColor(Color.ORANGE);
+                            break;
+                        }
+                        case 2:
+                        {
+                            g.setColor(Color.RED);
+                            break;
+                        }
+                        case 3:
+                        {
+                            g.setColor(Color.GREEN);
+                            break;
+                        }
+                        case 4:
+                        {
+                            g.setColor(Color.BLUE);
+                            break;
+                        }
+                        case 5:
+                        {
+                            g.setColor(Color.YELLOW);
+                            break;
+                        }
+                        case 6:
+                        {
+                            g.setColor(Color.MAGENTA);
+                            break;
+                        }
+                    }
+                    g.fillRect(Xtemp, 600, 50, 50);
+                    Xtemp += 60;
+                }
 
                 g.setColor(Color.WHITE);
                 g.setFont(new Font("Arial", Font.PLAIN, 120));
@@ -671,12 +716,17 @@ public class MastermindGraphics extends JComponent
          */
         public void actionPerformed(ActionEvent e)
         {
-            guessAnalysis = userGuess.checkGuess(computerSequence.getColorSequence());
+            List<Integer> temp = new ArrayList<>();
+            for(int i = 0; i < computerSequence.getColorSequence().size(); i++)
+            {
+                temp.add(computerSequence.getColorSequence().get(i));
+            }
+            guessAnalysis = userGuess.checkGuess(temp);
             if (guessAnalysis == null)
             {
                 isGameWon = 2;
             }
-            else if (turnCounter <= 0)
+            else if (turnCounter < 2)
             {
                 isGameWon = 3;
             }
