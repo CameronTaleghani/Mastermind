@@ -1,8 +1,5 @@
 import java.util.Random;
 
-/**
- * Created by camerontaleghani on 5/18/15.
- */
 public class MastermindColorSequence
 {
     int[] fColorSequence;
@@ -25,5 +22,10 @@ public class MastermindColorSequence
         {
             fColorSequence[i] = random.nextInt(5) + 1;
         }
+    }
+
+    public void setColors(int index, int color)
+    {
+        fColorSequence[index] = color;
     }
 }

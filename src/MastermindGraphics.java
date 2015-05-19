@@ -11,7 +11,7 @@ public class MastermindGraphics extends JComponent
     private boolean isGameRunning;
     //choose to use an int here because there are three states the game can be in: won, lost, or neither
     private int isGameWon;
-    private int[] userGuess;
+    private MastermindColorSequence userGuess;
     private int[] guessAnalysis;
     private int colorSet;
     private int turnCounter;
@@ -36,6 +36,10 @@ public class MastermindGraphics extends JComponent
     private BlueButton fBlueButton;
     private YellowButton fYellowButton;
     private MagentaButton fMagentaButton;
+    private Slot1Button fSlot1;
+    private Slot2Button fSlot2;
+    private Slot3Button fSlot3;
+    private Slot4Button fSlot4;
     private CheckGuessButton fCheckGuess;
     private BackButton fBackButton;
 
@@ -45,6 +49,7 @@ public class MastermindGraphics extends JComponent
         fWidth = width;
         fHeight = height;
         isGameRunning = false;
+        userGuess = new MastermindColorSequence();
         init();
     }
 
@@ -89,9 +94,24 @@ public class MastermindGraphics extends JComponent
         add( fMagentaButton );
 
         fCheckGuess = new CheckGuessButton();
-        fCheckGuess.setBounds(300, 620, 100, 36);
+        fCheckGuess.setBounds(415, 620, 150, 36);
         add( fCheckGuess );
 
+        fSlot1 = new Slot1Button();
+        fSlot1.setBounds(180, 450, 150, 150);
+        add( fSlot1 );
+
+        fSlot2 = new Slot2Button();
+        fSlot2.setBounds(340, 450, 150, 150);
+        add( fSlot2 );
+
+        fSlot3 = new Slot3Button();
+        fSlot3.setBounds(500, 450, 150, 150);
+        add( fSlot3 );
+
+        fSlot4 = new Slot4Button();
+        fSlot4.setBounds(660, 450, 150, 150);
+        add( fSlot4 );
     }
 
     public void paintComponent(Graphics g)
@@ -133,8 +153,20 @@ public class MastermindGraphics extends JComponent
         fYellowButton.setEnabled(false);
         fMagentaButton.setEnabled(false);
 
-//        fCheckGuess.setVisible(false);
-//        fCheckGuess.setEnabled(false);
+        fCheckGuess.setVisible(false);
+        fCheckGuess.setEnabled(false);
+
+        fSlot1.setVisible(false);
+        fSlot1.setEnabled(false);
+
+        fSlot2.setVisible(false);
+        fSlot2.setEnabled(false);
+
+        fSlot3.setVisible(false);
+        fSlot3.setEnabled(false);
+
+        fSlot4.setVisible(false);
+        fSlot4.setEnabled(false);
 //
 //        fBackButton.setVisible(false);
 //        fBackButton.setEnabled(false);
@@ -165,8 +197,20 @@ public class MastermindGraphics extends JComponent
         fYellowButton.setEnabled(true);
         fMagentaButton.setEnabled(true);
 
-//        fCheckGuess.setVisible(true);
-//        fCheckGuess.setEnabled(true);
+        fCheckGuess.setVisible(true);
+        fCheckGuess.setEnabled(true);
+
+        fSlot1.setVisible(true);
+        fSlot1.setEnabled(true);
+
+        fSlot2.setVisible(true);
+        fSlot2.setEnabled(true);
+
+        fSlot3.setVisible(true);
+        fSlot3.setEnabled(true);
+
+        fSlot4.setVisible(true);
+        fSlot4.setEnabled(true);
     }
 
     private class EasyButton extends JButton implements ActionListener
@@ -408,6 +452,94 @@ public class MastermindGraphics extends JComponent
         public void actionPerformed(ActionEvent e)
         {
             isGameRunning = false;
+
+            repaint();
+        }
+    }
+
+    private class Slot1Button extends JButton implements ActionListener
+    {
+        //standard button code, gotten from game of life and such
+        public Slot1Button()
+        {
+            super("Slot1");
+            addActionListener(this);
+        }
+
+        /**
+         * React to the button press.
+         *
+         * @param e the action
+         */
+        public void actionPerformed(ActionEvent e)
+        {
+            userGuess.setColors(0, colorSet);
+
+            repaint();
+        }
+    }
+
+    private class Slot2Button extends JButton implements ActionListener
+    {
+        //standard button code, gotten from game of life and such
+        public Slot2Button()
+        {
+            super("Slot2");
+            addActionListener(this);
+        }
+
+        /**
+         * React to the button press.
+         *
+         * @param e the action
+         */
+        public void actionPerformed(ActionEvent e)
+        {
+            userGuess.setColors(1, colorSet);
+
+            repaint();
+        }
+    }
+
+    private class Slot3Button extends JButton implements ActionListener
+    {
+        //standard button code, gotten from game of life and such
+        public Slot3Button()
+        {
+            super("Slot3");
+            addActionListener(this);
+        }
+
+        /**
+         * React to the button press.
+         *
+         * @param e the action
+         */
+        public void actionPerformed(ActionEvent e)
+        {
+            userGuess.setColors(2, colorSet);
+
+            repaint();
+        }
+    }
+
+    private class Slot4Button extends JButton implements ActionListener
+    {
+        //standard button code, gotten from game of life and such
+        public Slot4Button()
+        {
+            super("Slot4");
+            addActionListener(this);
+        }
+
+        /**
+         * React to the button press.
+         *
+         * @param e the action
+         */
+        public void actionPerformed(ActionEvent e)
+        {
+            userGuess.setColors(3, colorSet);
 
             repaint();
         }
