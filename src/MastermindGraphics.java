@@ -602,6 +602,7 @@ public class MastermindGraphics extends JComponent
 
             userGuess = new MastermindColorSequence();
 
+            guessAnalysis = new int[4];
             for (int i = 0; i < guessAnalysis.length; i++)
             {
                 guessAnalysis[i] = 9;
@@ -643,6 +644,7 @@ public class MastermindGraphics extends JComponent
 
             userGuess = new MastermindColorSequence();
 
+            guessAnalysis = new int[4];
             for (int i = 0; i < guessAnalysis.length; i++)
             {
                 guessAnalysis[i] = 9;
@@ -683,6 +685,7 @@ public class MastermindGraphics extends JComponent
 
             userGuess = new MastermindColorSequence();
 
+            guessAnalysis = new int[4];
             for (int i = 0; i < guessAnalysis.length; i++)
             {
                 guessAnalysis[i] = 9;
@@ -870,19 +873,15 @@ public class MastermindGraphics extends JComponent
             }
             userGuessHistory.add(tempArr);
             int[] tempAnalysis = new int[4];
-            for(int i = 0; i < guessAnalysis.length; i++)
+            if (guessAnalysis != null)
             {
-                tempAnalysis[i] = guessAnalysis[i];
+                for(int i = 0; i < guessAnalysis.length; i++)
+                {
+                    tempAnalysis[i] = guessAnalysis[i];
+                }
             }
             userGuessHistory.add(tempAnalysis);
             turnCounter--;
-
-            System.out.println("After");
-            for (int i : guessAnalysis)
-            {
-                System.out.print(i);
-            }
-            System.out.println();
 
             repaint();
         }
