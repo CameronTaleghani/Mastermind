@@ -1,17 +1,20 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class MastermindColorSequence
 {
-    int[] fColorSequence;
+    List<Integer> fColorSequence;
     int[] fGuessAnalysis = {9, 9, 9, 9};
 
     public MastermindColorSequence()
     {
-        fColorSequence = new int[4];
+        fColorSequence = new ArrayList<>(4);
     }
 
     /**
-     * Sets the color sequence to a random color sequence.
+     * Sets the list to a random color sequence.
+     * By Cameron
      */
     public void generateRandomColorSequence()
     {
@@ -19,15 +22,16 @@ public class MastermindColorSequence
 
         for(int i = 0; i < 4; i++)
         {
-            fColorSequence[i] = random.nextInt(5) + 1;
+            fColorSequence.add(random.nextInt(5) + 1);
         }
     }
 
     /**
      * Sets the instance sequence to the color sequence.
      * @param colorSequence The color sequence the instance sequence will be set to.
+     * By Cameron
      */
-    public void setColorSequence(int[] colorSequence)
+    public void setColorSequence(List<Integer> colorSequence)
     {
         fColorSequence = colorSequence;
     }
@@ -35,12 +39,18 @@ public class MastermindColorSequence
     /**
      * Gets the color sequence
      * @return An int array representing the color sequence.
+     * By Cameron
      */
-    public int[] getColorSequence()
+    public List<Integer> getColorSequence()
     {
         return fColorSequence;
     }
 
+    /**
+     * Gets the guess analysis.
+     * @return The guess analysis, how the guess compares to the correct sequence.
+     * By Sam
+     */
     public int[] getGuessAnalysis()
     {
         return fGuessAnalysis;
@@ -48,20 +58,22 @@ public class MastermindColorSequence
 
     /**
      * Resets the color sequence list so that all of the colors are 0
+     * By Cameron
      */
     public void resetColorSequence()
     {
-        fColorSequence = new int[4];
+        fColorSequence = new ArrayList<>(4);
     }
 
     /**
      * Changes a color at a specific point in the sequence.
      * @param index The index at which the list is being set to the color value.
      * @param color The color being changed to.
+     * By Cameron
      */
     public void setColors(int index, int color)
     {
-        fColorSequence[index] = color;
+        fColorSequence.set(index, color);
     }
 
     /**
@@ -72,20 +84,22 @@ public class MastermindColorSequence
      * 7 indicates that a color is in the sequence and that the color is in the correct position.
      * 8 indicates that a color is in the sequence but not in the correct position.
      * 9 indicates that no color is in the sequence.
+     * By Cameron
      */
-    public int[] checkGuess(int[] computerSequence)
+    public int[] checkGuess(List<Integer> computerSequence)
     {
 
         //sets ints in guessAnalysis to 7 or 8 based on the comparison
-        for(int i = 0; i < fColorSequence.length; i++)                  //iterate across the guessed sequence
+        for(int i = 0; i < fColorSequence.size(); i++)                  //iterate across the guessed sequence
         {
-            for(int j = computerSequence.length - 1; j >= 0; j--)       //iterate down the correct sequence for each color in the guessed sequence
+            for(int j = computerSequence.size() - 1; j >= 0; j--)       //iterate down the correct sequence for each color in the guessed sequence
             {
-                if(fColorSequence[i] == computerSequence[j])            //colors are the same
+                if(fColorSequence.get(i) == computerSequence.get(j))            //colors are the same
                 {
                     if(i == j)                                          //colors are in the same position
                     {
                         fGuessAnalysis[i] = 7;
+                        computerSequence.remove(j);
                         break;                                          //closes the inner loop so that the value is not reset to 8 if the
                     }                                                   //same color is found in a different position
                     else                                                //same colors but different position
@@ -130,15 +144,20 @@ public class MastermindColorSequence
     {
         MastermindColorSequence computerSequence = new MastermindColorSequence();
         MastermindColorSequence sequence = new MastermindColorSequence();
-        computerSequence.setColors(0, 3);
-        computerSequence.setColors(1, 2);
-        computerSequence.setColors(2, 4);
-        computerSequence.setColors(3, 1);
+        List<Integer> compSequence = computerSequence.getColorSequence();
+        List<Integer> seq = sequence.getColorSequence();
+        compSequence.add(2);
+        compSequence.add(4);
+        compSequence.add(3);
+        compSequence.add(3);
 
-        sequence.setColors(0, 3);
-        sequence.setColors(1, 3);
-        sequence.setColors(2, 3);
-        sequence.setColors(3, 3);
+        seq.add(3);
+        seq.add(1);
+        seq.add(1);
+        seq.add(1);
+
+        sequence.setColorSequence(seq);
+        computerSequence.setColorSequence(compSequence);
 
         int[] analysis = sequence.checkGuess(computerSequence.getColorSequence());
 

@@ -20,6 +20,7 @@ public class MastermindGraphics extends JComponent
     private List<MastermindColorSequence> userGuessHistory;
     private int colorSet;
     private int turnCounter;
+    private int numTotalGuesses;
 
     /**
      * For the colors, I'm using the order that I have them listed here
@@ -33,6 +34,7 @@ public class MastermindGraphics extends JComponent
      * Zero I have left out so that we can use that for uncolored
      * 7 = Black
      * 8 = White
+     * 9 = Nothing
      */
     private EasyButton fEasyButton;
     private MediumButton fMediumButton;
@@ -63,6 +65,7 @@ public class MastermindGraphics extends JComponent
         fHeight = height;
         isGameRunning = false;
         isGameWon = 1;
+        numTotalGuesses = 0;
         userGuess = new MastermindColorSequence();
         computerSequence = new MastermindColorSequence();
         computerSequence.generateRandomColorSequence();
@@ -205,6 +208,7 @@ public class MastermindGraphics extends JComponent
             else
             {
                 GameScreenConstants(g);
+                GameHistory(g);
                 for (int index = 0; index < guessAnalysis.length; index++)
                 {
                     int feedback = guessAnalysis[index];
@@ -382,6 +386,14 @@ public class MastermindGraphics extends JComponent
         fSlot4.setVisible(true);
     }
 
+    public void GameHistory(Graphics g)
+    {
+        if(numTotalGuesses == 12)
+        {
+            g.fillRect(160, 0, 75, 75);
+        }
+    }
+
     private class EasyButton extends JButton implements ActionListener
     {
         //standard button code, gotten from game of life and such
@@ -401,6 +413,7 @@ public class MastermindGraphics extends JComponent
             turnCounter = 12;
             isGameRunning = true;
             isGameWon = 1;
+            numTotalGuesses = 12;
             fSlot1.setBackground(Color.GRAY);
             fSlot2.setBackground(Color.GRAY);
             fSlot3.setBackground(Color.GRAY);
@@ -714,7 +727,7 @@ public class MastermindGraphics extends JComponent
         public void actionPerformed(ActionEvent e)
         {
             userGuess.setColors(0, colorSet);
-            switch (userGuess.getColorSequence()[0])
+            switch (userGuess.getColorSequence().get(0))
             {
                 case 0:
                 {
@@ -774,7 +787,7 @@ public class MastermindGraphics extends JComponent
         public void actionPerformed(ActionEvent e)
         {
             userGuess.setColors(1, colorSet);
-            switch (userGuess.getColorSequence()[1])
+            switch (userGuess.getColorSequence().get(1))
             {
                 case 0:
                 {
@@ -834,7 +847,7 @@ public class MastermindGraphics extends JComponent
         public void actionPerformed(ActionEvent e)
         {
             userGuess.setColors(2, colorSet);
-            switch (userGuess.getColorSequence()[2])
+            switch (userGuess.getColorSequence().get(2))
             {
                 case 0:
                 {
@@ -894,7 +907,7 @@ public class MastermindGraphics extends JComponent
         public void actionPerformed(ActionEvent e)
         {
             userGuess.setColors(3, colorSet);
-            switch (userGuess.getColorSequence()[3])
+            switch (userGuess.getColorSequence().get(3))
             {
                 case 0:
                 {
