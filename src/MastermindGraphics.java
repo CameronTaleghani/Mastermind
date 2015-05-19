@@ -401,6 +401,23 @@ public class MastermindGraphics extends JComponent
             turnCounter = 12;
             isGameRunning = true;
             isGameWon = 1;
+            fSlot1.setBackground(Color.GRAY);
+            fSlot2.setBackground(Color.GRAY);
+            fSlot3.setBackground(Color.GRAY);
+            fSlot4.setBackground(Color.GRAY);
+
+            computerSequence.generateRandomColorSequence();
+            userGuess = new MastermindColorSequence();
+
+            for (int i = 0; i < guessAnalysis.length; i++)
+            {
+                guessAnalysis[i] = 9;
+            }
+
+            for(int i = userGuessHistory.size() - 1; i >= 0; i--)
+            {
+                userGuessHistory.remove(i);
+            }
 
             repaint();
         }
@@ -426,6 +443,24 @@ public class MastermindGraphics extends JComponent
             isGameRunning = true;
             isGameWon = 1;
 
+            fSlot1.setBackground(Color.GRAY);
+            fSlot2.setBackground(Color.GRAY);
+            fSlot3.setBackground(Color.GRAY);
+            fSlot4.setBackground(Color.GRAY);
+
+            computerSequence.generateRandomColorSequence();
+            userGuess = new MastermindColorSequence();
+
+            for (int i = 0; i < guessAnalysis.length; i++)
+            {
+                guessAnalysis[i] = 9;
+            }
+
+            for(int i = userGuessHistory.size() - 1; i >= 0; i--)
+            {
+                userGuessHistory.remove(i);
+            }
+
             repaint();
         }
     }
@@ -449,6 +484,23 @@ public class MastermindGraphics extends JComponent
             turnCounter = 8;
             isGameRunning = true;
             isGameWon = 1;
+            fSlot1.setBackground(Color.GRAY);
+            fSlot2.setBackground(Color.GRAY);
+            fSlot3.setBackground(Color.GRAY);
+            fSlot4.setBackground(Color.GRAY);
+
+            computerSequence.generateRandomColorSequence();
+            userGuess = new MastermindColorSequence();
+
+            for (int i = 0; i < guessAnalysis.length; i++)
+            {
+                guessAnalysis[i] = 9;
+            }
+
+            for(int i = userGuessHistory.size() - 1; i >= 0; i--)
+            {
+                userGuessHistory.remove(i);
+            }
 
             repaint();
         }
