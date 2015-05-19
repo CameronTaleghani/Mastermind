@@ -443,9 +443,55 @@ public class MastermindGraphics extends JComponent
 
         if (userGuessHistory.size() >=1)
         {
+            int X1temp = 100;
+            int Y1temp = 50;
+            int X2temp = 100;
+            int Y2temp = 47;
             for (int i = 0; i < userGuessHistory.size(); i++)
             {
                 for (int index = 0; index < userGuessHistory.get(i).getColorSequence().size(); index++)
+                {
+                    int color = userGuessHistory.get(i).getColorSequence().get(index);
+                    switch (color)
+                    {
+                        case 0:
+                        {
+                            g.setColor(Color.GRAY);
+                            break;
+                        }
+                        case 1:
+                        {
+                            g.setColor(Color.ORANGE);
+                            break;
+                        }
+                        case 2:
+                        {
+                            g.setColor(Color.RED);
+                            break;
+                        }
+                        case 3:
+                        {
+                            g.setColor(Color.GREEN);
+                            break;
+                        }
+                        case 4:
+                        {
+                            g.setColor(Color.BLUE);
+                            break;
+                        }
+                        case 5:
+                        {
+                            g.setColor(Color.YELLOW);
+                            break;
+                        }
+                        case 6:
+                        {
+                            g.setColor(Color.MAGENTA);
+                            break;
+                        }
+                    }
+                    g.fillRect(X1temp, Y1temp, 20, 20);
+                }
             }
         }
     }
@@ -742,7 +788,15 @@ public class MastermindGraphics extends JComponent
             {
                 isGameWon = 1;
             }
-            userGuessHistory.add(userGuess);
+            List<Integer> userTemp = new ArrayList<>();
+            for(int i = 0; i < userGuess.getColorSequence().size(); i++)
+            {
+                temp.add(userGuess.getColorSequence().get(i));
+            }
+            MastermindColorSequence Temp = new MastermindColorSequence();
+            Temp.setColorSequence(userTemp);
+            Temp.checkGuess(temp);
+            userGuessHistory.add(Temp);
             turnCounter--;
 
             repaint();
