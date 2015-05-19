@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.*;
+import java.util.List;
 
 public class MastermindGraphics extends JComponent
 {
@@ -13,6 +15,7 @@ public class MastermindGraphics extends JComponent
     private int isGameWon;
     private MastermindColorSequence userGuess;
     private MastermindColorSequence computerSequence;
+    private List<MastermindColorSequence> userGuessHistory;
     private int colorSet;
     private int turnCounter;
 
@@ -60,6 +63,7 @@ public class MastermindGraphics extends JComponent
         userGuess = new MastermindColorSequence();
         computerSequence = new MastermindColorSequence();
         computerSequence.generateRandomColorSequence();
+        userGuessHistory = new ArrayList<>();
         init();
     }
 
@@ -73,15 +77,15 @@ public class MastermindGraphics extends JComponent
         setSize( fWidth, fHeight );
 
         fEasyButton = new EasyButton();
-        fEasyButton.setBounds(225, 400, 400, 36);
+        fEasyButton.setBounds(225, 500, 400, 36);
         add( fEasyButton );
 
         fMediumButton = new MediumButton();
-        fMediumButton.setBounds(225, 456, 400, 36);
+        fMediumButton.setBounds(225, 556, 400, 36);
         add( fMediumButton );
 
         fHardButton = new HardButton();
-        fHardButton.setBounds(225, 512, 400, 36);
+        fHardButton.setBounds(225, 612, 400, 36);
         add( fHardButton );
 
         fOrangeButton = new OrangeButton();
@@ -127,6 +131,10 @@ public class MastermindGraphics extends JComponent
         fSlot4 = new Slot4Button();
         fSlot4.setBounds(580, 450, 130, 130);
         add( fSlot4 );
+
+        fBackButton = new BackButton();
+        fBackButton.setBounds(400, 300, 100, 35);
+        add( fBackButton );
     }
 
     /**
@@ -145,7 +153,86 @@ public class MastermindGraphics extends JComponent
         }
         else
         {
-            GameScreenConstants(g);
+            if (isGameWon == 2 || isGameWon == 3)
+            {
+                fBackButton.setVisible(true);
+                fBackButton.setEnabled(true);
+
+                fCheckGuess.setVisible(false);
+                fCheckGuess.setEnabled(false);
+
+                fOrangeButton.setEnabled(false);
+                fRedButton.setEnabled(false);
+                fGreenButton.setEnabled(false);
+                fBlueButton.setEnabled(false);
+                fYellowButton.setEnabled(false);
+                fMagentaButton.setEnabled(false);
+
+                fSlot1.setEnabled(false);
+                fSlot2.setEnabled(false);
+                fSlot3.setEnabled(false);
+                fSlot4.setEnabled(false);
+//                int[] userCurrent = userGuess.get;
+//                int Xtemp = 160;
+//                for(int color : userCurrent)
+//            {
+//                switch (color)
+//                {
+//                    case 0:
+//                    {
+//                        g.setColor(Color.GRAY);
+//                        break;
+//                    }
+//                    case 1:
+//                    {
+//                        g.setColor(Color.ORANGE);
+//                        break;
+//                    }
+//                    case 2:
+//                    {
+//                        g.setColor(Color.RED);
+//                        break;
+//                    }
+//                    case 3:
+//                    {
+//                        g.setColor(Color.GREEN);
+//                        break;
+//                    }
+//                    case 4:
+//                    {
+//                        g.setColor(Color.BLUE);
+//                        break;
+//                    }
+//                    case 5:
+//                    {
+//                        g.setColor(Color.YELLOW);
+//                        break;
+//                    }
+//                    case 6:
+//                    {
+//                        g.setColor(Color.MAGENTA);
+//                        break;
+//                    }
+//                }
+//                g.fillRect(Xtemp, 450, 130, 130);
+//                Xtemp += 140;
+                g.setColor(Color.DARK_GRAY);
+                g.fillRect(0, 0, 885, 800);
+
+                g.setColor(Color.WHITE);
+                g.setFont(new Font("Arial", Font.PLAIN, 120));
+                if (isGameWon == 2)
+                {
+                    g.drawString("Victory!", 250, 200);
+                }
+                else
+                {
+                    g.drawString("You lose...", 200, 200);
+                }
+            }
+            else
+            {
+                GameScreenConstants(g);
 //            int[] userCurrent = userGuess.get;
 //            int Xtemp = 160;
 //            for(int color : userCurrent)
@@ -224,11 +311,19 @@ public class MastermindGraphics extends JComponent
 //                    g.fillOval(785, 515, 60, 60);
 //                }
 //            }
+            }
         }
 
         repaint();
     }
 
+    /**
+     * Method containing the things that are always redrawn every time the level select screen is shown.
+     * Helps to keep them from cluttering up the paintComponent method
+     * @param g graphics
+     *
+     * Method by Sam
+     */
     public void LevelSelectConstants(Graphics g)
     {
         fEasyButton.setVisible(true);
@@ -271,11 +366,39 @@ public class MastermindGraphics extends JComponent
 
         fSlot4.setVisible(false);
         fSlot4.setEnabled(false);
-//
-//        fBackButton.setVisible(false);
-//        fBackButton.setEnabled(false);
+
+        fBackButton.setVisible(false);
+        fBackButton.setEnabled(false);
+
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("Arial", Font.BOLD, 72));
+        g.drawString("Mastermind", 220, 100);
+
+        //The entire freaking instruction paragraph, formatted to fit the screen.
+        g.setFont(new Font("Arial", Font.PLAIN, 20));
+        g.drawString("Instructions: Mastermind is a logic brain puzzle game, where you have a certain number of ", 20, 200);
+        g.drawString("guesses to crack the color code generated by the computer. The computer creates a sequence ", 20, 220);
+        g.drawString("of four random colors out of six possible colors. Repeats in a sequence are allowed. Your ", 20, 240);
+        g.drawString("job is to figure out the sequence before you run out of guesses. On the far right hand side ", 20, 260);
+        g.drawString("of the screen will be the color choices. The bottom center of the screen will have the four ", 20, 280);
+        g.drawString("sequence placement choices. Select a color, then select a sequence placement. Then, click the ", 20, 300);
+        g.drawString("\"Check Guess\" button. The computer will then give feedback about the color sequence you ", 20, 320);
+        g.drawString("guessed in the form of black and white pegs in a square on the right of your guessed sequence. ", 20, 340);
+        g.drawString("A black peg means that one of your guessed colors is both correct, and in the right spot in the ", 20, 360);
+        g.drawString("sequence. A white peg means that there is a correct color in your sequence, but not in the right ", 20, 380);
+        g.drawString("spot. No peg means that a color in your sequence is not in it at all. THE ORDER OF THE PEGS DOES ", 20, 400);
+        g.drawString("NOT CORRESPOND IN ANY WAY TO WHICH COLORS ARE CORRECT OR NOT. All a black  ", 20, 420);
+        g.drawString("peg means is that some color in the sequence is in the right spot, and does not tell you anything ", 20, 440);
+        g.drawString("of which one that color is. That is the challenge of the game. Good luck, player!", 20, 460);
     }
 
+    /**
+     * Method containing the things that are always redrawn every time the game screen is drawn.
+     * Helps to keep them from cluttering up the paintComponent method
+     * @param g graphics
+     *
+     * Method by Sam
+     */
     public void GameScreenConstants(Graphics g)
     {
         fEasyButton.setVisible(false);
@@ -286,6 +409,9 @@ public class MastermindGraphics extends JComponent
 
         fHardButton.setVisible(false);
         fHardButton.setEnabled(false);
+
+        fBackButton.setVisible(false);
+        fBackButton.setEnabled(false);
 
         g.setColor(Color.DARK_GRAY);
         g.fillRect(0, 0, 885, 800);
@@ -307,6 +433,10 @@ public class MastermindGraphics extends JComponent
 
         g.setColor(Color.MAGENTA);
         g.fillRect(20, 590, 100, 100);
+
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("Arial", Font.BOLD, 30));
+        g.drawString("Guesses Remaining: " + turnCounter, 275, 720);
 
         fOrangeButton.setEnabled(true);
         fRedButton.setEnabled(true);
@@ -548,7 +678,8 @@ public class MastermindGraphics extends JComponent
          */
         public void actionPerformed(ActionEvent e)
         {
-
+            userGuessHistory.add(userGuess);
+            turnCounter--;
             repaint();
         }
     }
@@ -592,6 +723,7 @@ public class MastermindGraphics extends JComponent
         public void actionPerformed(ActionEvent e)
         {
             userGuess.setColors(0, colorSet);
+            isGameWon = 3;
 
             repaint();
         }
