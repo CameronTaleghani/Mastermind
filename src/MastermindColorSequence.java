@@ -9,7 +9,11 @@ public class MastermindColorSequence
 
     public MastermindColorSequence()
     {
-        fColorSequence = new ArrayList<>(4);
+        fColorSequence = new ArrayList<>();
+        fColorSequence.add(0);
+        fColorSequence.add(0);
+        fColorSequence.add(0);
+        fColorSequence.add(0);
     }
 
     /**
@@ -22,7 +26,7 @@ public class MastermindColorSequence
 
         for(int i = 0; i < 4; i++)
         {
-            fColorSequence.add(random.nextInt(5) + 1);
+            fColorSequence.set(i, random.nextInt(5) + 1);
         }
     }
 
