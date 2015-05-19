@@ -41,6 +41,11 @@ public class MastermindColorSequence
         return fColorSequence;
     }
 
+    public int[] getGuessAnalysis()
+    {
+        return fGuessAnalysis;
+    }
+
     /**
      * Resets the color sequence list so that all of the colors are 0
      */

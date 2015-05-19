@@ -12,9 +12,11 @@ public class MastermindGraphics extends JComponent
 
     private boolean isGameRunning;
     //choose to use an int here because there are three states the game can be in: won, lost, or neither
+    //2 is a victory, 3 is a loss, 1 is neither
     private int isGameWon;
     private MastermindColorSequence userGuess;
     private MastermindColorSequence computerSequence;
+    int [] guessAnalysis;
     private List<MastermindColorSequence> userGuessHistory;
     private int colorSet;
     private int turnCounter;
@@ -60,9 +62,11 @@ public class MastermindGraphics extends JComponent
         fWidth = width;
         fHeight = height;
         isGameRunning = false;
+        isGameWon = 1;
         userGuess = new MastermindColorSequence();
         computerSequence = new MastermindColorSequence();
         computerSequence.generateRandomColorSequence();
+        guessAnalysis = userGuess.getGuessAnalysis();
         userGuessHistory = new ArrayList<>();
         init();
     }
@@ -90,6 +94,9 @@ public class MastermindGraphics extends JComponent
 
         fOrangeButton = new OrangeButton();
         fOrangeButton.setBounds(20, 40, 100, 100);
+        fOrangeButton.setBackground(Color.ORANGE);
+        fOrangeButton.setContentAreaFilled(false);
+        fOrangeButton.setOpaque(true);
         add( fOrangeButton );
 
         fRedButton = new RedButton();
@@ -172,145 +179,153 @@ public class MastermindGraphics extends JComponent
                 fSlot2.setEnabled(false);
                 fSlot3.setEnabled(false);
                 fSlot4.setEnabled(false);
-//                int[] userCurrent = userGuess.get;
-//                int Xtemp = 160;
-//                for(int color : userCurrent)
-//            {
-//                switch (color)
-//                {
-//                    case 0:
-//                    {
-//                        g.setColor(Color.GRAY);
-//                        break;
-//                    }
-//                    case 1:
-//                    {
-//                        g.setColor(Color.ORANGE);
-//                        break;
-//                    }
-//                    case 2:
-//                    {
-//                        g.setColor(Color.RED);
-//                        break;
-//                    }
-//                    case 3:
-//                    {
-//                        g.setColor(Color.GREEN);
-//                        break;
-//                    }
-//                    case 4:
-//                    {
-//                        g.setColor(Color.BLUE);
-//                        break;
-//                    }
-//                    case 5:
-//                    {
-//                        g.setColor(Color.YELLOW);
-//                        break;
-//                    }
-//                    case 6:
-//                    {
-//                        g.setColor(Color.MAGENTA);
-//                        break;
-//                    }
-//                }
-//                g.fillRect(Xtemp, 450, 130, 130);
-//                Xtemp += 140;
+
                 g.setColor(Color.DARK_GRAY);
                 g.fillRect(0, 0, 885, 800);
 
-                g.setColor(Color.WHITE);
-                g.setFont(new Font("Arial", Font.PLAIN, 120));
-                if (isGameWon == 2)
+                int[] userCurrent = userGuess.getColorSequence();
+                int Xtemp = 160;
+                for (int color : userCurrent)
                 {
-                    g.drawString("Victory!", 250, 200);
-                }
-                else
-                {
-                    g.drawString("You lose...", 200, 200);
+                    switch (color)
+                    {
+                        case 0:
+                        {
+                            g.setColor(Color.GRAY);
+                            break;
+                        }
+                        case 1:
+                        {
+                            g.setColor(Color.ORANGE);
+                            break;
+                        }
+                        case 2:
+                        {
+                            g.setColor(Color.RED);
+                            break;
+                        }
+                        case 3:
+                        {
+                            g.setColor(Color.GREEN);
+                            break;
+                        }
+                        case 4:
+                        {
+                            g.setColor(Color.BLUE);
+                            break;
+                        }
+                        case 5:
+                        {
+                            g.setColor(Color.YELLOW);
+                            break;
+                        }
+                        case 6:
+                        {
+                            g.setColor(Color.MAGENTA);
+                            break;
+                        }
+                    }
+                    g.fillRect(Xtemp, 450, 130, 130);
+                    Xtemp += 140;
+
+                    g.setColor(Color.WHITE);
+                    g.setFont(new Font("Arial", Font.PLAIN, 120));
+                    if (isGameWon == 2)
+                    {
+                        g.drawString("Victory!", 250, 200);
+                    }
+                    else
+                    {
+                        g.drawString("You lose...", 200, 200);
+                    }
                 }
             }
             else
             {
                 GameScreenConstants(g);
-//            int[] userCurrent = userGuess.get;
-//            int Xtemp = 160;
-//            for(int color : userCurrent)
-//            {
-//                switch (color)
-//                {
-//                    case 0:
-//                    {
-//                        g.setColor(Color.GRAY);
-//                        break;
-//                    }
-//                    case 1:
-//                    {
-//                        g.setColor(Color.ORANGE);
-//                        break;
-//                    }
-//                    case 2:
-//                    {
-//                        g.setColor(Color.RED);
-//                        break;
-//                    }
-//                    case 3:
-//                    {
-//                        g.setColor(Color.GREEN);
-//                        break;
-//                    }
-//                    case 4:
-//                    {
-//                        g.setColor(Color.BLUE);
-//                        break;
-//                    }
-//                    case 5:
-//                    {
-//                        g.setColor(Color.YELLOW);
-//                        break;
-//                    }
-//                    case 6:
-//                    {
-//                        g.setColor(Color.MAGENTA);
-//                        break;
-//                    }
-//                }
-//                g.fillRect(Xtemp, 450, 130, 130);
-//                Xtemp += 140;
-//            }
-//            for (int index = 0; index < guessAnalysis.length; index++)
-//            {
-//                int feedback = guessAnalysis[index];
-//                switch (feedback)
-//                {
-//                    case 7:
-//                    {
-//                        g.setColor(Color.BLACK);
-//                        break;
-//                    }
-//                    case 8:
-//                    {
-//                        g.setColor(Color.WHITE);
-//                        break;
-//                    }
-//                }
-//                if (index == 0)
-//                {
-//                    g.fillOval(720, 450, 60, 60);
-//                }
-//                else if (index == 1)
-//                {
-//                    g.fillOval(785, 450, 60, 60);
-//                }
-//                else if (index == 2)
-//                {
-//                    g.fillOval(720, 515, 60, 60);
-//                }
-//                else
-//                {
-//                    g.fillOval(785, 515, 60, 60);
-//                }
-//            }
+                int[] userCurrent = userGuess.getColorSequence();
+                int Xtemp = 160;
+                for(int index = )
+                {
+                    switch (color)
+                    {
+                        case 0:
+                        {
+                            g.setColor(Color.GRAY);
+                            break;
+                        }
+                        case 1:
+                        {
+                            g.setColor(Color.ORANGE);
+                            break;
+                        }
+                        case 2:
+                        {
+                            g.setColor(Color.RED);
+                            break;
+                        }
+                        case 3:
+                        {
+                            g.setColor(Color.GREEN);
+                            break;
+                        }
+                        case 4:
+                        {
+                            g.setColor(Color.BLUE);
+                            break;
+                        }
+                        case 5:
+                        {
+                            g.setColor(Color.YELLOW);
+                            break;
+                        }
+                        case 6:
+                        {
+                            g.setColor(Color.MAGENTA);
+                            break;
+                        }
+                    }
+                    g.fillRect(Xtemp, 450, 130, 130);
+                    Xtemp += 140;
+                }
+                for (int index = 0; index < guessAnalysis.length; index++)
+                {
+                    int feedback = guessAnalysis[index];
+                    switch (feedback)
+                    {
+                        case 7:
+                        {
+                            g.setColor(Color.BLACK);
+                            break;
+                        }
+                        case 8:
+                        {
+                            g.setColor(Color.WHITE);
+                            break;
+                        }
+                        case 9:
+                        {
+                            g.setColor(Color.DARK_GRAY);
+                            break;
+                        }
+                    }
+                    if (index == 0)
+                    {
+                        g.fillOval(720, 450, 60, 60);
+                    }
+                    else if (index == 1)
+                    {
+                        g.fillOval(785, 450, 60, 60);
+                    }
+                    else if (index == 2)
+                    {
+                        g.fillOval(720, 515, 60, 60);
+                    }
+                    else
+                    {
+                        g.fillOval(785, 515, 60, 60);
+                    }
+                }
             }
         }
 
@@ -386,10 +401,10 @@ public class MastermindGraphics extends JComponent
         g.drawString("guessed in the form of black and white pegs in a square on the right of your guessed sequence. ", 20, 340);
         g.drawString("A black peg means that one of your guessed colors is both correct, and in the right spot in the ", 20, 360);
         g.drawString("sequence. A white peg means that there is a correct color in your sequence, but not in the right ", 20, 380);
-        g.drawString("spot. No peg means that a color in your sequence is not in it at all. THE ORDER OF THE PEGS DOES ", 20, 400);
-        g.drawString("NOT CORRESPOND IN ANY WAY TO WHICH COLORS ARE CORRECT OR NOT. All a black  ", 20, 420);
-        g.drawString("peg means is that some color in the sequence is in the right spot, and does not tell you anything ", 20, 440);
-        g.drawString("of which one that color is. That is the challenge of the game. Good luck, player!", 20, 460);
+        g.drawString("spot. No peg means that a color in your sequence is not in it at all. THE ORDER OF THE PEGS ", 20, 400);
+        g.drawString("DOES NOT CORRESPOND IN ANY WAY TO WHICH COLORS ARE CORRECT OR NOT. All ", 20, 420);
+        g.drawString("a black peg means is that some color in the sequence is in the right spot, and does not tell ", 20, 440);
+        g.drawString("you anything of which one that color is. That is the challenge of the game. Good luck, player!", 20, 460);
     }
 
     /**
@@ -416,8 +431,10 @@ public class MastermindGraphics extends JComponent
         g.setColor(Color.DARK_GRAY);
         g.fillRect(0, 0, 885, 800);
 
+
         g.setColor(Color.ORANGE);
         g.fillRect(20, 40, 100, 100);
+        fOrangeButton.setVisible(true);
 
         g.setColor(Color.RED);
         g.fillRect(20, 150, 100, 100);
@@ -448,16 +465,12 @@ public class MastermindGraphics extends JComponent
         fCheckGuess.setVisible(true);
         fCheckGuess.setEnabled(true);
 
-        fSlot1.setVisible(true);
         fSlot1.setEnabled(true);
 
-        fSlot2.setVisible(true);
         fSlot2.setEnabled(true);
 
-        fSlot3.setVisible(true);
         fSlot3.setEnabled(true);
 
-        fSlot4.setVisible(true);
         fSlot4.setEnabled(true);
     }
 
@@ -479,6 +492,7 @@ public class MastermindGraphics extends JComponent
         {
             turnCounter = 12;
             isGameRunning = true;
+            isGameWon = 1;
 
             repaint();
         }
@@ -502,6 +516,7 @@ public class MastermindGraphics extends JComponent
         {
             turnCounter = 10;
             isGameRunning = true;
+            isGameWon = 1;
 
             repaint();
         }
@@ -525,6 +540,7 @@ public class MastermindGraphics extends JComponent
         {
             turnCounter = 8;
             isGameRunning = true;
+            isGameWon = 1;
 
             repaint();
         }
@@ -547,6 +563,7 @@ public class MastermindGraphics extends JComponent
         public void actionPerformed(ActionEvent e)
         {
             colorSet = 1;
+            System.out.print(colorSet);
 
             repaint();
         }
@@ -678,8 +695,22 @@ public class MastermindGraphics extends JComponent
          */
         public void actionPerformed(ActionEvent e)
         {
+            guessAnalysis = userGuess.checkGuess(computerSequence.getColorSequence());
+            if (guessAnalysis == null)
+            {
+                isGameWon = 2;
+            }
+            else if (turnCounter <= 0)
+            {
+                isGameWon = 3;
+            }
+            else
+            {
+                isGameWon = 1;
+            }
             userGuessHistory.add(userGuess);
             turnCounter--;
+
             repaint();
         }
     }
@@ -723,7 +754,6 @@ public class MastermindGraphics extends JComponent
         public void actionPerformed(ActionEvent e)
         {
             userGuess.setColors(0, colorSet);
-            isGameWon = 3;
 
             repaint();
         }
