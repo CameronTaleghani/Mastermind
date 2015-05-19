@@ -440,6 +440,14 @@ public class MastermindGraphics extends JComponent
 
         fSlot4.setEnabled(true);
         fSlot4.setVisible(true);
+
+        if (userGuessHistory.size() >=1)
+        {
+            for (int i = 0; i < userGuessHistory.size(); i++)
+            {
+                for (int index = 0; index < userGuessHistory.get(i).getColorSequence().size(); index++)
+            }
+        }
     }
 
     private class EasyButton extends JButton implements ActionListener
