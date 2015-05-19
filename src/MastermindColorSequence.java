@@ -81,7 +81,7 @@ public class MastermindColorSequence
         {
             for(int j = computerSequence.length - 1; j >= 0; j--)       //iterate down the correct sequence for each color in the guessed sequence
             {
-                if(fColorSequence[i] == computerSequence[i])            //colors are the same
+                if(fColorSequence[i] == computerSequence[j])            //colors are the same
                 {
                     if(i == j)                                          //colors are in the same position
                     {
@@ -132,5 +132,19 @@ public class MastermindColorSequence
         MastermindColorSequence sequence = new MastermindColorSequence();
         computerSequence.setColors(0, 3);
         computerSequence.setColors(1, 2);
+        computerSequence.setColors(2, 4);
+        computerSequence.setColors(3, 1);
+
+        sequence.setColors(0, 3);
+        sequence.setColors(1, 3);
+        sequence.setColors(2, 3);
+        sequence.setColors(3, 3);
+
+        int[] analysis = sequence.checkGuess(computerSequence.getColorSequence());
+
+        for (int a : analysis)
+        {
+            System.out.println(a);
+        }
     }
 }
