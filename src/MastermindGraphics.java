@@ -95,29 +95,32 @@ public class MastermindGraphics extends JComponent
         fOrangeButton = new OrangeButton();
         fOrangeButton.setBounds(20, 40, 100, 100);
         fOrangeButton.setBackground(Color.ORANGE);
-        fOrangeButton.setContentAreaFilled(false);
-        fOrangeButton.setOpaque(true);
         add( fOrangeButton );
 
         fRedButton = new RedButton();
         fRedButton.setBounds(20, 150, 100, 100);
-        add( fRedButton );
+        fRedButton.setBackground(Color.RED);
+        add(fRedButton);
 
         fGreenButton = new GreenButton();
         fGreenButton.setBounds(20, 260, 100, 100);
-        add( fGreenButton );
+        fGreenButton.setBackground(Color.GREEN);
+        add(fGreenButton);
 
         fBlueButton = new BlueButton();
         fBlueButton.setBounds(20, 370, 100, 100);
-        add( fBlueButton );
+        fBlueButton.setBackground(Color.BLUE);
+        add(fBlueButton);
 
         fYellowButton = new YellowButton();
         fYellowButton.setBounds(20, 480, 100, 100);
-        add( fYellowButton );
+        fYellowButton.setBackground(Color.YELLOW);
+        add(fYellowButton);
 
         fMagentaButton = new MagentaButton();
         fMagentaButton.setBounds(20, 590, 100, 100);
-        add( fMagentaButton );
+        fMagentaButton.setBackground(Color.MAGENTA);
+        add(fMagentaButton);
 
         fCheckGuess = new CheckGuessButton();
         fCheckGuess.setBounds(365, 620, 150, 36);
@@ -125,18 +128,22 @@ public class MastermindGraphics extends JComponent
 
         fSlot1 = new Slot1Button();
         fSlot1.setBounds(160, 450, 130, 130);
-        add( fSlot1 );
+        fSlot1.setBackground(Color.GRAY);
+        add(fSlot1);
 
         fSlot2 = new Slot2Button();
         fSlot2.setBounds(300, 450, 130, 130);
+        fSlot2.setBackground(Color.GRAY);
         add( fSlot2 );
 
         fSlot3 = new Slot3Button();
         fSlot3.setBounds(440, 450, 130, 130);
+        fSlot3.setBackground(Color.GRAY);
         add( fSlot3 );
 
         fSlot4 = new Slot4Button();
         fSlot4.setBounds(580, 450, 130, 130);
+        fSlot4.setBackground(Color.GRAY);
         add( fSlot4 );
 
         fBackButton = new BackButton();
@@ -183,111 +190,21 @@ public class MastermindGraphics extends JComponent
                 g.setColor(Color.DARK_GRAY);
                 g.fillRect(0, 0, 885, 800);
 
-                int[] userCurrent = userGuess.getColorSequence();
-                int Xtemp = 160;
-                for (int color : userCurrent)
-                {
-                    switch (color)
-                    {
-                        case 0:
-                        {
-                            g.setColor(Color.GRAY);
-                            break;
-                        }
-                        case 1:
-                        {
-                            g.setColor(Color.ORANGE);
-                            break;
-                        }
-                        case 2:
-                        {
-                            g.setColor(Color.RED);
-                            break;
-                        }
-                        case 3:
-                        {
-                            g.setColor(Color.GREEN);
-                            break;
-                        }
-                        case 4:
-                        {
-                            g.setColor(Color.BLUE);
-                            break;
-                        }
-                        case 5:
-                        {
-                            g.setColor(Color.YELLOW);
-                            break;
-                        }
-                        case 6:
-                        {
-                            g.setColor(Color.MAGENTA);
-                            break;
-                        }
-                    }
-                    g.fillRect(Xtemp, 450, 130, 130);
-                    Xtemp += 140;
 
-                    g.setColor(Color.WHITE);
-                    g.setFont(new Font("Arial", Font.PLAIN, 120));
-                    if (isGameWon == 2)
-                    {
-                        g.drawString("Victory!", 250, 200);
-                    }
-                    else
-                    {
-                        g.drawString("You lose...", 200, 200);
-                    }
+                g.setColor(Color.WHITE);
+                g.setFont(new Font("Arial", Font.PLAIN, 120));
+                if (isGameWon == 2)
+                {
+                    g.drawString("Victory!", 250, 200);
+                }
+                else
+                {
+                    g.drawString("You lose...", 200, 200);
                 }
             }
             else
             {
                 GameScreenConstants(g);
-                int[] userCurrent = userGuess.getColorSequence();
-                int Xtemp = 160;
-                for(int index = )
-                {
-                    switch (color)
-                    {
-                        case 0:
-                        {
-                            g.setColor(Color.GRAY);
-                            break;
-                        }
-                        case 1:
-                        {
-                            g.setColor(Color.ORANGE);
-                            break;
-                        }
-                        case 2:
-                        {
-                            g.setColor(Color.RED);
-                            break;
-                        }
-                        case 3:
-                        {
-                            g.setColor(Color.GREEN);
-                            break;
-                        }
-                        case 4:
-                        {
-                            g.setColor(Color.BLUE);
-                            break;
-                        }
-                        case 5:
-                        {
-                            g.setColor(Color.YELLOW);
-                            break;
-                        }
-                        case 6:
-                        {
-                            g.setColor(Color.MAGENTA);
-                            break;
-                        }
-                    }
-                    g.fillRect(Xtemp, 450, 130, 130);
-                    Xtemp += 140;
-                }
                 for (int index = 0; index < guessAnalysis.length; index++)
                 {
                     int feedback = guessAnalysis[index];
@@ -431,26 +348,6 @@ public class MastermindGraphics extends JComponent
         g.setColor(Color.DARK_GRAY);
         g.fillRect(0, 0, 885, 800);
 
-
-        g.setColor(Color.ORANGE);
-        g.fillRect(20, 40, 100, 100);
-        fOrangeButton.setVisible(true);
-
-        g.setColor(Color.RED);
-        g.fillRect(20, 150, 100, 100);
-
-        g.setColor(Color.GREEN);
-        g.fillRect(20, 260, 100, 100);
-
-        g.setColor(Color.BLUE);
-        g.fillRect(20, 370, 100, 100);
-
-        g.setColor(Color.YELLOW);
-        g.fillRect(20, 480, 100, 100);
-
-        g.setColor(Color.MAGENTA);
-        g.fillRect(20, 590, 100, 100);
-
         g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.BOLD, 30));
         g.drawString("Guesses Remaining: " + turnCounter, 275, 720);
@@ -462,16 +359,27 @@ public class MastermindGraphics extends JComponent
         fYellowButton.setEnabled(true);
         fMagentaButton.setEnabled(true);
 
+        fOrangeButton.setVisible(true);
+        fRedButton.setVisible(true);
+        fGreenButton.setVisible(true);
+        fBlueButton.setVisible(true);
+        fYellowButton.setVisible(true);
+        fMagentaButton.setVisible(true);
+
         fCheckGuess.setVisible(true);
         fCheckGuess.setEnabled(true);
 
         fSlot1.setEnabled(true);
+        fSlot1.setVisible(true);
 
         fSlot2.setEnabled(true);
+        fSlot2.setVisible(true);
 
         fSlot3.setEnabled(true);
+        fSlot3.setVisible(true);
 
         fSlot4.setEnabled(true);
+        fSlot4.setVisible(true);
     }
 
     private class EasyButton extends JButton implements ActionListener
@@ -551,7 +459,7 @@ public class MastermindGraphics extends JComponent
         //standard button code, gotten from game of life and such
         public OrangeButton()
         {
-            super("Orange");
+            super("");
             addActionListener(this);
         }
 
@@ -574,7 +482,7 @@ public class MastermindGraphics extends JComponent
         //standard button code, gotten from game of life and such
         public RedButton()
         {
-            super("Red");
+            super("");
             addActionListener(this);
         }
 
@@ -596,7 +504,7 @@ public class MastermindGraphics extends JComponent
         //standard button code, gotten from game of life and such
         public GreenButton()
         {
-            super("Green");
+            super("");
             addActionListener(this);
         }
 
@@ -618,7 +526,7 @@ public class MastermindGraphics extends JComponent
         //standard button code, gotten from game of life and such
         public BlueButton()
         {
-            super("Blue");
+            super("");
             addActionListener(this);
         }
 
@@ -640,7 +548,7 @@ public class MastermindGraphics extends JComponent
         //standard button code, gotten from game of life and such
         public YellowButton()
         {
-            super("Yellow");
+            super("");
             addActionListener(this);
         }
 
@@ -662,7 +570,7 @@ public class MastermindGraphics extends JComponent
         //standard button code, gotten from game of life and such
         public MagentaButton()
         {
-            super("Magenta");
+            super("");
             addActionListener(this);
         }
 
@@ -742,7 +650,7 @@ public class MastermindGraphics extends JComponent
         //standard button code, gotten from game of life and such
         public Slot1Button()
         {
-            super("Slot1");
+            super("");
             addActionListener(this);
         }
 
@@ -754,6 +662,44 @@ public class MastermindGraphics extends JComponent
         public void actionPerformed(ActionEvent e)
         {
             userGuess.setColors(0, colorSet);
+            switch (userGuess.getColorSequence()[0])
+            {
+                case 0:
+                {
+                    this.setBackground(Color.GRAY);
+                    break;
+                }
+                case 1:
+                {
+                    this.setBackground(Color.ORANGE);
+                    break;
+                }
+                case 2:
+                {
+                    this.setBackground(Color.RED);
+                    break;
+                }
+                case 3:
+                {
+                    this.setBackground(Color.GREEN);
+                    break;
+                }
+                case 4:
+                {
+                    this.setBackground(Color.BLUE);
+                    break;
+                }
+                case 5:
+                {
+                    this.setBackground(Color.YELLOW);
+                    break;
+                }
+                case 6:
+                {
+                    this.setBackground(Color.MAGENTA);
+                    break;
+                }
+            }
 
             repaint();
         }
@@ -764,7 +710,7 @@ public class MastermindGraphics extends JComponent
         //standard button code, gotten from game of life and such
         public Slot2Button()
         {
-            super("Slot2");
+            super("");
             addActionListener(this);
         }
 
@@ -776,6 +722,44 @@ public class MastermindGraphics extends JComponent
         public void actionPerformed(ActionEvent e)
         {
             userGuess.setColors(1, colorSet);
+            switch (userGuess.getColorSequence()[1])
+            {
+                case 0:
+                {
+                    this.setBackground(Color.GRAY);
+                    break;
+                }
+                case 1:
+                {
+                    this.setBackground(Color.ORANGE);
+                    break;
+                }
+                case 2:
+                {
+                    this.setBackground(Color.RED);
+                    break;
+                }
+                case 3:
+                {
+                    this.setBackground(Color.GREEN);
+                    break;
+                }
+                case 4:
+                {
+                    this.setBackground(Color.BLUE);
+                    break;
+                }
+                case 5:
+                {
+                    this.setBackground(Color.YELLOW);
+                    break;
+                }
+                case 6:
+                {
+                    this.setBackground(Color.MAGENTA);
+                    break;
+                }
+            }
 
             repaint();
         }
@@ -786,7 +770,7 @@ public class MastermindGraphics extends JComponent
         //standard button code, gotten from game of life and such
         public Slot3Button()
         {
-            super("Slot3");
+            super("");
             addActionListener(this);
         }
 
@@ -798,6 +782,44 @@ public class MastermindGraphics extends JComponent
         public void actionPerformed(ActionEvent e)
         {
             userGuess.setColors(2, colorSet);
+            switch (userGuess.getColorSequence()[2])
+            {
+                case 0:
+                {
+                    this.setBackground(Color.GRAY);
+                    break;
+                }
+                case 1:
+                {
+                    this.setBackground(Color.ORANGE);
+                    break;
+                }
+                case 2:
+                {
+                    this.setBackground(Color.RED);
+                    break;
+                }
+                case 3:
+                {
+                    this.setBackground(Color.GREEN);
+                    break;
+                }
+                case 4:
+                {
+                    this.setBackground(Color.BLUE);
+                    break;
+                }
+                case 5:
+                {
+                    this.setBackground(Color.YELLOW);
+                    break;
+                }
+                case 6:
+                {
+                    this.setBackground(Color.MAGENTA);
+                    break;
+                }
+            }
 
             repaint();
         }
@@ -808,7 +830,7 @@ public class MastermindGraphics extends JComponent
         //standard button code, gotten from game of life and such
         public Slot4Button()
         {
-            super("Slot4");
+            super("");
             addActionListener(this);
         }
 
@@ -820,6 +842,44 @@ public class MastermindGraphics extends JComponent
         public void actionPerformed(ActionEvent e)
         {
             userGuess.setColors(3, colorSet);
+            switch (userGuess.getColorSequence()[3])
+            {
+                case 0:
+                {
+                    this.setBackground(Color.GRAY);
+                    break;
+                }
+                case 1:
+                {
+                    this.setBackground(Color.ORANGE);
+                    break;
+                }
+                case 2:
+                {
+                    this.setBackground(Color.RED);
+                    break;
+                }
+                case 3:
+                {
+                    this.setBackground(Color.GREEN);
+                    break;
+                }
+                case 4:
+                {
+                    this.setBackground(Color.BLUE);
+                    break;
+                }
+                case 5:
+                {
+                    this.setBackground(Color.YELLOW);
+                    break;
+                }
+                case 6:
+                {
+                    this.setBackground(Color.MAGENTA);
+                    break;
+                }
+            }
 
             repaint();
         }
