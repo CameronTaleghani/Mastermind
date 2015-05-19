@@ -126,4 +126,11 @@ public class MastermindColorSequence
 
         return fGuessAnalysis;
     }
+    public void printCheck()
+    {
+        MastermindColorSequence computerSequence = new MastermindColorSequence();
+        MastermindColorSequence sequence = new MastermindColorSequence();
+        computerSequence.setColors(0, 3);
+        computerSequence.setColors(1, 2);
+    }
 }
