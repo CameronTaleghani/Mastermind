@@ -76,7 +76,7 @@ public class MastermindColorSequence
         {
             for(int j = computerSequence.length - 1; j >= 0; j--)       //iterate down the correct sequence for each color in the guessed sequence
             {
-                if(fColorSequence[i] == computerSequence[i])    //colors are the same
+                if(fColorSequence[i] == computerSequence[i])            //colors are the same
                 {
                     if(i == j)                                          //colors are in the same position
                     {
@@ -91,12 +91,6 @@ public class MastermindColorSequence
             }
         }
 
-        for(int num: fGuessAnalysis)
-        {
-            System.out.print(num);
-        }
-        System.out.println();
-
         //selection sort from least to greatest
         for (int i = 0; i < fGuessAnalysis.length - 1; i++)
         {
@@ -108,6 +102,21 @@ public class MastermindColorSequence
             int smallerNumber = fGuessAnalysis[index];
             fGuessAnalysis[index] = fGuessAnalysis[i];
             fGuessAnalysis[i] = smallerNumber;
+        }
+
+        boolean hasWon = true;
+        //Checks to see if the guess matches the computer sequence
+        for(int num: fGuessAnalysis)
+        {
+            if(num != 7)
+            {
+                hasWon = false;
+            }
+        }
+
+        if(hasWon)
+        {
+            return null;
         }
 
         return fGuessAnalysis;
