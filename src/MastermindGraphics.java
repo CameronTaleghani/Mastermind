@@ -794,4 +794,9 @@ public class MastermindGraphics extends JComponent
             repaint();
         }
     }
+
+    public MastermindColorSequence getComputerSequence()
+    {
+        return computerSequence;
+    }
 }
