@@ -68,6 +68,7 @@ public class MastermindGraphics extends JComponent
         numTotalGuesses = 0;
         userGuess = new MastermindColorSequence();
         computerSequence = new MastermindColorSequence();
+        guessAnalysis = new int[4];
         computerSequence.generateRandomColorSequence();
         guessAnalysis = userGuess.getGuessAnalysis();
         userGuessHistory = new ArrayList<>();
@@ -452,7 +453,7 @@ public class MastermindGraphics extends JComponent
             {
                 for (int index = 0; index < userGuessHistory.get(i).length; index++)
                 {
-                    if (i % 2 != 0)
+                    if (i % 2 == 0)
                     {
                         int color = userGuessHistory.get(i)[index];
                         switch (color)
@@ -816,10 +817,6 @@ public class MastermindGraphics extends JComponent
          */
         public void actionPerformed(ActionEvent e)
         {
-            for (int analysis : guessAnalysis)
-            {
-                analysis = 9;
-            }
             List<Integer> temp = new ArrayList<>();
             for(int i = 0; i < computerSequence.getColorSequence().size(); i++)
             {
@@ -846,6 +843,14 @@ public class MastermindGraphics extends JComponent
             userGuessHistory.add(tempArr);
             userGuessHistory.add(guessAnalysis);
             turnCounter--;
+
+            for (int i : guessAnalysis)
+            {
+                System.out.print(i + " ");
+            }
+            System.out.println();
+
+            repaint();
         }
     }
 
