@@ -220,7 +220,6 @@ public class MastermindGraphics extends JComponent
             else
             {
                 GameScreenConstants(g);
-                GameHistory(g);
                 for (int index = 0; index < guessAnalysis.length; index++)
                 {
                     int feedback = guessAnalysis[index];
@@ -396,14 +395,6 @@ public class MastermindGraphics extends JComponent
 
         fSlot4.setEnabled(true);
         fSlot4.setVisible(true);
-    }
-
-    public void GameHistory(Graphics g)
-    {
-        if(numTotalGuesses == 12)
-        {
-            g.fillRect(160, 0, 75, 75);
-        }
     }
 
     private class EasyButton extends JButton implements ActionListener

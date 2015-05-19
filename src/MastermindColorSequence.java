@@ -90,25 +90,33 @@ public class MastermindColorSequence
     {
         List<Integer> guess = new ArrayList<>(fColorSequence);
         //sets ints in guessAnalysis to 7 or 8 based on the comparison
+        int analysisCount = 0;
         for(int i = guess.size() - 1; i >= 0; i--)                  //iterate across the guessed sequence
         {
             if(guess.get(i).equals(computerSequence.get(i)))            //colors are the same
             {
-                fGuessAnalysis[i] = 7;
+                fGuessAnalysis[analysisCount] = 7;
                 computerSequence.remove(i);
                 guess.remove(i);
+                analysisCount++;
             }
         }
-
+        //3352
+        //1545
         for(int i = guess.size() - 1; i >= 0; i--)
         {
             for(int j = computerSequence.size() - 1; j >= 0; j--)
             {
                 if(guess.get(i).equals(computerSequence.get(j)))
                 {
-                    fGuessAnalysis[i] = 8;
+                    fGuessAnalysis[analysisCount] = 8;
                     computerSequence.remove(j);
                     guess.remove(i);
+                    analysisCount++;
+                    if(i != 0)
+                    {
+                        i--;
+                    }
                 }
             }
         }
@@ -148,26 +156,39 @@ public class MastermindColorSequence
     {
         MastermindColorSequence computerSequence = new MastermindColorSequence();
         MastermindColorSequence sequence = new MastermindColorSequence();
-        List<Integer> compSequence = computerSequence.getColorSequence();
-        List<Integer> seq = sequence.getColorSequence();
-        compSequence.add(1);
-        compSequence.add(3);
-        compSequence.add(3);
-        compSequence.add(1);
+        computerSequence.generateRandomColorSequence();
+        sequence.generateRandomColorSequence();
+//        List<Integer> seq = new ArrayList<>();
+//        List<Integer> compSeq = new ArrayList<>();
+//        seq.add(3);
+//        seq.add(1);
+//        seq.add(5);
+//        seq.add(2);
+//        compSeq.add(1);
+//        compSeq.add(5);
+//        compSeq.add(4);
+//        compSeq.add(5);
+//        sequence.setColorSequence(compSeq);
+//        computerSequence.setColorSequence(seq);
 
-        seq.add(3);
-        seq.add(1);
-        seq.add(1);
-        seq.add(1);
+        for(int color: computerSequence.getColorSequence())
+        {
+            System.out.print(color);
+        }
+        System.out.println();
 
-        sequence.setColorSequence(seq);
-        computerSequence.setColorSequence(compSequence);
+        for(int color: sequence.getColorSequence())
+        {
+            System.out.print(color);
+        }
+        System.out.println();
 
         int[] analysis = sequence.checkGuess(computerSequence.getColorSequence());
 
         for (int a : analysis)
         {
-            System.out.println(a);
+            System.out.print(a);
         }
+        System.out.println();
     }
 }
