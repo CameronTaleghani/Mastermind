@@ -10,6 +10,7 @@ public class MastermindColorSequence
     public MastermindColorSequence()
     {
         fColorSequence = new ArrayList<>();
+        fColorSequence.clear();
         fColorSequence.add(0);
         fColorSequence.add(0);
         fColorSequence.add(0);
@@ -66,7 +67,7 @@ public class MastermindColorSequence
      */
     public void resetColorSequence()
     {
-        fColorSequence = new ArrayList<>(4);
+        fColorSequence.clear();
     }
 
     /**
@@ -169,8 +170,8 @@ public class MastermindColorSequence
     {
         MastermindColorSequence computerSequence = new MastermindColorSequence();
         MastermindColorSequence sequence = new MastermindColorSequence();
-//        computerSequence.generateRandomColorSequence();
-//        sequence.generateRandomColorSequence();
+        computerSequence.generateRandomColorSequence();
+        sequence.generateRandomColorSequence();
 //        List<Integer> seq = new ArrayList<>();
 //        List<Integer> compSeq = new ArrayList<>();
 //        seq.add(3);
