@@ -28,7 +28,9 @@ public class MastermindColorSequence
         for(int i = 0; i < 4; i++)
         {
             fColorSequence.set(i, random.nextInt(5) + 1);
+            System.out.print(fColorSequence.get(i));
         }
+        System.out.println();
     }
 
     /**
@@ -62,12 +64,15 @@ public class MastermindColorSequence
     }
 
     /**
-     * Resets the color sequence list so that all of the colors are 0
+     * Resets the analysis list so that everything is set to 9
      * By Cameron
      */
-    public void resetColorSequence()
+    public void resetAnalysis()
     {
-        fColorSequence.clear();
+        for(int i = 0; i < fGuessAnalysis.length; i++)
+        {
+            fGuessAnalysis[i] = 9;
+        }
     }
 
     /**
@@ -94,11 +99,15 @@ public class MastermindColorSequence
     public int[] checkGuess(List<Integer> computerSequence)
     {
         List<Integer> guess = new ArrayList<>();
+        resetAnalysis();
 
+        System.out.println("Before: ");
         for(int color: fColorSequence)
         {
             guess.add(color);
+            System.out.print(color);
         }
+        System.out.println();
 
         //Checks for same color and position, removing those that match
         int analysisCount = 0;
@@ -145,15 +154,25 @@ public class MastermindColorSequence
             fGuessAnalysis[i] = smallerNumber;
         }
 
+        System.out.println("After:");
+        for(int color: fColorSequence)
+        {
+            System.out.print(color);
+        }
+        System.out.println();
+
         boolean hasWon = true;
         //Checks to see if the guess matches the computer sequence
+        System.out.println("Before");
         for(int num: fGuessAnalysis)
         {
             if(num != 7)
             {
                 hasWon = false;
             }
+            System.out.print(num);
         }
+        System.out.println();
 
         if(hasWon)
         {

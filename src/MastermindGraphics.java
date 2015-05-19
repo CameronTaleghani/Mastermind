@@ -16,7 +16,7 @@ public class MastermindGraphics extends JComponent
     private int isGameWon;
     private MastermindColorSequence userGuess;
     private MastermindColorSequence computerSequence;
-    private int [] guessAnalysis;
+    private int[] guessAnalysis;
     private List<int[]> userGuessHistory;
     private int colorSet;
     private int turnCounter;
@@ -848,9 +848,10 @@ public class MastermindGraphics extends JComponent
             userGuessHistory.add(guessAnalysis);
             turnCounter--;
 
+            System.out.println("After");
             for (int i : guessAnalysis)
             {
-                System.out.print(i + " ");
+                System.out.print(i);
             }
             System.out.println();
 
