@@ -16,7 +16,7 @@ public class MastermindGraphics extends JComponent
     private int isGameWon;
     private MastermindColorSequence userGuess;
     private MastermindColorSequence computerSequence;
-    int [] guessAnalysis;
+    private int [] guessAnalysis;
     private List<int[]> userGuessHistory;
     private int colorSet;
     private int turnCounter;
@@ -302,6 +302,7 @@ public class MastermindGraphics extends JComponent
                     {
                         g.fillOval(785, 515, 60, 60);
                     }
+                    repaint();
                 }
             }
         }
@@ -443,54 +444,100 @@ public class MastermindGraphics extends JComponent
 
         if (userGuessHistory.size() >=1)
         {
-            int X1temp = 100;
+            int X1temp = 130;
             int Y1temp = 50;
-            int X2temp = 100;
+            int X2temp = 270;
             int Y2temp = 47;
             for (int i = 0; i < userGuessHistory.size(); i++)
             {
                 for (int index = 0; index < userGuessHistory.get(i).length; index++)
                 {
-                    int color = userGuessHistory.get(i)[index];
-                    switch (color)
+                    if (i % 2 != 0)
                     {
-                        case 0:
+                        int color = userGuessHistory.get(i)[index];
+                        switch (color)
                         {
-                            g.setColor(Color.GRAY);
-                            break;
+                            case 0:
+                            {
+                                g.setColor(Color.GRAY);
+                                break;
+                            }
+                            case 1:
+                            {
+                                g.setColor(Color.ORANGE);
+                                break;
+                            }
+                            case 2:
+                            {
+                                g.setColor(Color.RED);
+                                break;
+                            }
+                            case 3:
+                            {
+                                g.setColor(Color.GREEN);
+                                break;
+                            }
+                            case 4:
+                            {
+                                g.setColor(Color.BLUE);
+                                break;
+                            }
+                            case 5:
+                            {
+                                g.setColor(Color.YELLOW);
+                                break;
+                            }
+                            case 6:
+                            {
+                                g.setColor(Color.MAGENTA);
+                                break;
+                            }
                         }
-                        case 1:
+                        g.fillRect(X1temp, Y1temp, 30, 30);
+                        X1temp += 35;
+                    }
+                    else
+                    {
+                        int feedback = userGuessHistory.get(i)[index];
+                        switch (feedback)
                         {
-                            g.setColor(Color.ORANGE);
-                            break;
+                            case 7:
+                            {
+                                g.setColor(Color.BLACK);
+                                break;
+                            }
+                            case 8:
+                            {
+                                g.setColor(Color.WHITE);
+                                break;
+                            }
+                            case 9:
+                            {
+                                g.setColor(Color.DARK_GRAY);
+                                break;
+                            }
                         }
-                        case 2:
+                        if (index == 0)
                         {
-                            g.setColor(Color.RED);
-                            break;
+                            g.fillOval(X2temp, Y2temp, 15, 15);
+                            X2temp += 20;
                         }
-                        case 3:
+                        else if (index == 1)
                         {
-                            g.setColor(Color.GREEN);
-                            break;
+                            g.fillOval(X2temp, Y2temp, 15, 15);
+                            X2temp = 270;
+                            Y2temp += 20;
                         }
-                        case 4:
+                        else if (index == 2)
                         {
-                            g.setColor(Color.BLUE);
-                            break;
+                            g.fillOval(X2temp, Y2temp, 15, 15);
+                            X2temp += 20;
                         }
-                        case 5:
+                        else
                         {
-                            g.setColor(Color.YELLOW);
-                            break;
-                        }
-                        case 6:
-                        {
-                            g.setColor(Color.MAGENTA);
-                            break;
+                            g.fillOval(X2temp, Y2temp, 15, 15);
                         }
                     }
-                    g.fillRect(X1temp, Y1temp, 20, 20);
                 }
             }
         }
@@ -769,6 +816,10 @@ public class MastermindGraphics extends JComponent
          */
         public void actionPerformed(ActionEvent e)
         {
+            for (int analysis : guessAnalysis)
+            {
+                analysis = 9;
+            }
             List<Integer> temp = new ArrayList<>();
             for(int i = 0; i < computerSequence.getColorSequence().size(); i++)
             {
