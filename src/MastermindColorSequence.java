@@ -2,15 +2,31 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Object class to store and run methods through on color sequences
+ *
+ * Coded by Cameron
+ */
 public class MastermindColorSequence
 {
+    //List to store the actual color sequence
     List<Integer> fColorSequence;
+    //array used to store the values assigned to the assessment of the color sequence
+    //in comparison with another sequence (the computer sequence)
+    //7 is a black peg, 8 is a white peg, 9 is no peg
     int[] fGuessAnalysis = {9, 9, 9, 9};
 
+    /**
+     * Constructor class of ColorSequence object. Initializes the List used to store
+     * the color sequence.
+     *
+     * Method by Cameron
+     */
     public MastermindColorSequence()
     {
         fColorSequence = new ArrayList<>();
         fColorSequence.clear();
+        //adds four zeros so that there are created indexes that later can be set to values
         fColorSequence.add(0);
         fColorSequence.add(0);
         fColorSequence.add(0);
@@ -19,7 +35,8 @@ public class MastermindColorSequence
 
     /**
      * Sets the list to a random color sequence.
-     * By Cameron
+     *
+     * Method by Cameron
      */
     public void generateRandomColorSequence()
     {
@@ -36,7 +53,8 @@ public class MastermindColorSequence
     /**
      * Sets the instance sequence to the color sequence.
      * @param colorSequence The color sequence the instance sequence will be set to.
-     * By Cameron
+     *
+     * Method by Cameron
      */
     public void setColorSequence(List<Integer> colorSequence)
     {
@@ -46,7 +64,8 @@ public class MastermindColorSequence
     /**
      * Gets the color sequence
      * @return An int array representing the color sequence.
-     * By Cameron
+     *
+     * Method by Cameron
      */
     public List<Integer> getColorSequence()
     {
@@ -56,7 +75,8 @@ public class MastermindColorSequence
     /**
      * Gets the guess analysis.
      * @return The guess analysis, how the guess compares to the correct sequence.
-     * By Sam
+     *
+     * Method by Sam
      */
     public int[] getGuessAnalysis()
     {
@@ -65,7 +85,8 @@ public class MastermindColorSequence
 
     /**
      * Resets the analysis list so that everything is set to 9
-     * By Cameron
+     *
+     * Method by Cameron
      */
     public void resetAnalysis()
     {
@@ -79,7 +100,8 @@ public class MastermindColorSequence
      * Changes a color at a specific point in the sequence.
      * @param index The index at which the list is being set to the color value.
      * @param color The color being changed to.
-     * By Cameron
+     *
+     * Method by Cameron
      */
     public void setColors(int index, int color)
     {
@@ -94,20 +116,18 @@ public class MastermindColorSequence
      * 7 indicates that a color is in the sequence and that the color is in the correct position.
      * 8 indicates that a color is in the sequence but not in the correct position.
      * 9 indicates that no color is in the sequence.
-     * By Cameron
+     *
+     * Method by Cameron
      */
     public int[] checkGuess(List<Integer> computerSequence)
     {
         List<Integer> guess = new ArrayList<>();
         resetAnalysis();
 
-        System.out.println("Before: ");
         for(int color: fColorSequence)
         {
             guess.add(color);
-            System.out.print(color);
         }
-        System.out.println();
 
         //Checks for same color and position, removing those that match
         int analysisCount = 0;
@@ -154,25 +174,15 @@ public class MastermindColorSequence
             fGuessAnalysis[i] = smallerNumber;
         }
 
-        System.out.println("After:");
-        for(int color: fColorSequence)
-        {
-            System.out.print(color);
-        }
-        System.out.println();
-
         boolean hasWon = true;
         //Checks to see if the guess matches the computer sequence
-        System.out.println("Before");
         for(int num: fGuessAnalysis)
         {
             if(num != 7)
             {
                 hasWon = false;
             }
-            System.out.print(num);
         }
-        System.out.println();
 
         if(hasWon)
         {
@@ -183,7 +193,9 @@ public class MastermindColorSequence
     }
 
     /**
-     * A testing method
+     * A testing method. Serves no other purpose but checking game logic.
+     *
+     *Method by Sam and Cameron
      */
     public void printCheck()
     {
