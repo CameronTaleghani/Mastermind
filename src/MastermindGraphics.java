@@ -20,7 +20,6 @@ public class MastermindGraphics extends JComponent
     private List<int[]> userGuessHistory;
     private int colorSet;
     private int turnCounter;
-    private int numTotalGuesses;
 
     /**
      * For the colors, I'm using the order that I have them listed here
@@ -65,7 +64,6 @@ public class MastermindGraphics extends JComponent
         fHeight = height;
         isGameRunning = false;
         isGameWon = 1;
-        numTotalGuesses = 0;
         userGuess = new MastermindColorSequence();
         computerSequence = new MastermindColorSequence();
         computerSequence.generateRandomColorSequence();
@@ -96,45 +94,45 @@ public class MastermindGraphics extends JComponent
         add( fHardButton );
 
         fOrangeButton = new OrangeButton();
-        fOrangeButton.setContentAreaFilled(true);
-        fOrangeButton.setOpaque(true);
         fOrangeButton.setBounds(20, 40, 100, 100);
         fOrangeButton.setBackground(Color.ORANGE);
-        add( fOrangeButton );
+        fOrangeButton.setOpaque(true);
+        fOrangeButton.setBorderPainted(false);
+        add(fOrangeButton);
 
         fRedButton = new RedButton();
-        fRedButton.setContentAreaFilled(true);
-        fRedButton.setOpaque(true);
         fRedButton.setBounds(20, 150, 100, 100);
         fRedButton.setBackground(Color.RED);
+        fRedButton.setOpaque(true);
+        fRedButton.setBorderPainted(false);
         add(fRedButton);
 
         fGreenButton = new GreenButton();
-        fGreenButton.setContentAreaFilled(true);
-        fGreenButton.setOpaque(true);
         fGreenButton.setBounds(20, 260, 100, 100);
         fGreenButton.setBackground(Color.GREEN);
+        fGreenButton.setOpaque(true);
+        fGreenButton.setBorderPainted(false);
         add(fGreenButton);
 
         fBlueButton = new BlueButton();
-        fBlueButton.setContentAreaFilled(true);
-        fBlueButton.setOpaque(true);
         fBlueButton.setBounds(20, 370, 100, 100);
         fBlueButton.setBackground(Color.BLUE);
+        fBlueButton.setOpaque(true);
+        fBlueButton.setBorderPainted(false);
         add(fBlueButton);
 
         fYellowButton = new YellowButton();
-        fYellowButton.setContentAreaFilled(true);
-        fYellowButton.setOpaque(true);
         fYellowButton.setBounds(20, 480, 100, 100);
         fYellowButton.setBackground(Color.YELLOW);
+        fYellowButton.setOpaque(true);
+        fYellowButton.setBorderPainted(false);
         add(fYellowButton);
 
         fMagentaButton = new MagentaButton();
-        fMagentaButton.setContentAreaFilled(true);
-        fMagentaButton.setOpaque(true);
         fMagentaButton.setBounds(20, 590, 100, 100);
         fMagentaButton.setBackground(Color.MAGENTA);
+        fMagentaButton.setOpaque(true);
+        fMagentaButton.setBorderPainted(false);
         add(fMagentaButton);
 
         fCheckGuess = new CheckGuessButton();
@@ -144,21 +142,29 @@ public class MastermindGraphics extends JComponent
         fSlot1 = new Slot1Button();
         fSlot1.setBounds(160, 450, 130, 130);
         fSlot1.setBackground(Color.GRAY);
+        fSlot1.setOpaque(true);
+        fSlot1.setBorderPainted(false);
         add(fSlot1);
 
         fSlot2 = new Slot2Button();
         fSlot2.setBounds(300, 450, 130, 130);
         fSlot2.setBackground(Color.GRAY);
+        fSlot2.setOpaque(true);
+        fSlot2.setBorderPainted(false);
         add( fSlot2 );
 
         fSlot3 = new Slot3Button();
         fSlot3.setBounds(440, 450, 130, 130);
         fSlot3.setBackground(Color.GRAY);
+        fSlot3.setOpaque(true);
+        fSlot3.setBorderPainted(false);
         add( fSlot3 );
 
         fSlot4 = new Slot4Button();
         fSlot4.setBounds(580, 450, 130, 130);
         fSlot4.setBackground(Color.GRAY);
+        fSlot4.setOpaque(true);
+        fSlot4.setBorderPainted(false);
         add( fSlot4 );
 
         fBackButton = new BackButton();
@@ -562,7 +568,6 @@ public class MastermindGraphics extends JComponent
             turnCounter = 12;
             isGameRunning = true;
             isGameWon = 1;
-            numTotalGuesses = 12;
             fSlot1.setBackground(Color.GRAY);
             fSlot2.setBackground(Color.GRAY);
             fSlot3.setBackground(Color.GRAY);
