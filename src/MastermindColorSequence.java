@@ -88,24 +88,27 @@ public class MastermindColorSequence
      */
     public int[] checkGuess(List<Integer> computerSequence)
     {
-
+        List<Integer> guess = new ArrayList<>(fColorSequence);
         //sets ints in guessAnalysis to 7 or 8 based on the comparison
-        for(int i = 0; i < fColorSequence.size(); i++)                  //iterate across the guessed sequence
+        for(int i = guess.size() - 1; i >= 0; i--)                  //iterate across the guessed sequence
         {
-            for(int j = computerSequence.size() - 1; j >= 0; j--)       //iterate down the correct sequence for each color in the guessed sequence
+            if(guess.get(i).equals(computerSequence.get(i)))            //colors are the same
             {
-                if(fColorSequence.get(i) == computerSequence.get(j))            //colors are the same
+                fGuessAnalysis[i] = 7;
+                computerSequence.remove(i);
+                guess.remove(i);
+            }
+        }
+
+        for(int i = guess.size() - 1; i >= 0; i--)
+        {
+            for(int j = computerSequence.size() - 1; j >= 0; j--)
+            {
+                if(guess.get(i).equals(computerSequence.get(j)))
                 {
-                    if(i == j)                                          //colors are in the same position
-                    {
-                        fGuessAnalysis[i] = 7;
-                        computerSequence.remove(j);
-                        break;                                          //closes the inner loop so that the value is not reset to 8 if the
-                    }                                                   //same color is found in a different position
-                    else                                                //same colors but different position
-                    {
-                        fGuessAnalysis[i] = 8;
-                    }
+                    fGuessAnalysis[i] = 8;
+                    computerSequence.remove(j);
+                    guess.remove(i);
                 }
             }
         }
@@ -140,16 +143,17 @@ public class MastermindColorSequence
 
         return fGuessAnalysis;
     }
+
     public void printCheck()
     {
         MastermindColorSequence computerSequence = new MastermindColorSequence();
         MastermindColorSequence sequence = new MastermindColorSequence();
         List<Integer> compSequence = computerSequence.getColorSequence();
         List<Integer> seq = sequence.getColorSequence();
-        compSequence.add(2);
-        compSequence.add(4);
+        compSequence.add(1);
         compSequence.add(3);
         compSequence.add(3);
+        compSequence.add(1);
 
         seq.add(3);
         seq.add(1);

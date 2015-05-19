@@ -96,31 +96,43 @@ public class MastermindGraphics extends JComponent
         add( fHardButton );
 
         fOrangeButton = new OrangeButton();
+        fOrangeButton.setContentAreaFilled(true);
+        fOrangeButton.setOpaque(true);
         fOrangeButton.setBounds(20, 40, 100, 100);
         fOrangeButton.setBackground(Color.ORANGE);
         add( fOrangeButton );
 
         fRedButton = new RedButton();
+        fRedButton.setContentAreaFilled(true);
+        fRedButton.setOpaque(true);
         fRedButton.setBounds(20, 150, 100, 100);
         fRedButton.setBackground(Color.RED);
         add(fRedButton);
 
         fGreenButton = new GreenButton();
+        fGreenButton.setContentAreaFilled(true);
+        fGreenButton.setOpaque(true);
         fGreenButton.setBounds(20, 260, 100, 100);
         fGreenButton.setBackground(Color.GREEN);
         add(fGreenButton);
 
         fBlueButton = new BlueButton();
+        fBlueButton.setContentAreaFilled(true);
+        fBlueButton.setOpaque(true);
         fBlueButton.setBounds(20, 370, 100, 100);
         fBlueButton.setBackground(Color.BLUE);
         add(fBlueButton);
 
         fYellowButton = new YellowButton();
+        fYellowButton.setContentAreaFilled(true);
+        fYellowButton.setOpaque(true);
         fYellowButton.setBounds(20, 480, 100, 100);
         fYellowButton.setBackground(Color.YELLOW);
         add(fYellowButton);
 
         fMagentaButton = new MagentaButton();
+        fMagentaButton.setContentAreaFilled(true);
+        fMagentaButton.setOpaque(true);
         fMagentaButton.setBounds(20, 590, 100, 100);
         fMagentaButton.setBackground(Color.MAGENTA);
         add(fMagentaButton);
