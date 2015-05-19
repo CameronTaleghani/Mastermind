@@ -92,8 +92,14 @@ public class MastermindColorSequence
      */
     public int[] checkGuess(List<Integer> computerSequence)
     {
-        List<Integer> guess = new ArrayList<>(fColorSequence);
-        //sets ints in guessAnalysis to 7 or 8 based on the comparison
+        List<Integer> guess = new ArrayList<>();
+
+        for(int color: fColorSequence)
+        {
+            guess.add(color);
+        }
+
+        //Checks for same color and position, removing those that match
         int analysisCount = 0;
         for(int i = guess.size() - 1; i >= 0; i--)                  //iterate across the guessed sequence
         {
@@ -106,6 +112,7 @@ public class MastermindColorSequence
             }
         }
 
+        //Checks for same color but not position, removes those that match
         for(int i = guess.size() - 1; i >= 0; i--)
         {
             for(int j = computerSequence.size() - 1; j >= 0; j--)
@@ -155,6 +162,9 @@ public class MastermindColorSequence
         return fGuessAnalysis;
     }
 
+    /**
+     * A testing method
+     */
     public void printCheck()
     {
         MastermindColorSequence computerSequence = new MastermindColorSequence();
