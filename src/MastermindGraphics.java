@@ -453,10 +453,12 @@ public class MastermindGraphics extends JComponent
 
         if (userGuessHistory.size() >=1)
         {
-            int X1temp = 130;
+            int X1temp = 150;
             int Y1temp = 50;
-            int X2temp = 270;
+            int X2temp = 290;
+            int X2tempInit = X2temp;
             int Y2temp = 47;
+            int Y2tempStore = Y2temp;
             for (int i = 0; i < userGuessHistory.size(); i++)
             {
                 for (int index = 0; index < userGuessHistory.get(i).length; index++)
@@ -534,7 +536,7 @@ public class MastermindGraphics extends JComponent
                         else if (index == 1)
                         {
                             g.fillOval(X2temp, Y2temp, 15, 15);
-                            X2temp = 270;
+                            X2temp = X2tempInit;
                             Y2temp += 20;
                         }
                         else if (index == 2)
@@ -547,6 +549,28 @@ public class MastermindGraphics extends JComponent
                             g.fillOval(X2temp, Y2temp, 15, 15);
                         }
                     }
+                }
+                if ((i + 1) % 6 == 0)
+                {
+                    X1temp = 150;
+                    Y1temp += 100;
+                    X2temp = 290;
+                    Y2temp += 80;
+                    Y2tempStore = Y2temp;
+                }
+                else
+                {
+                    X1temp += 50;
+                    if (i == 0 || i == 6 || i == 12 || i == 18)
+                    {
+                        X2temp = 290;
+                    }
+                    else
+                    {
+                        X2temp += 110;
+                        Y2temp = Y2tempStore;
+                    }
+                    X2tempInit = X2temp;
                 }
             }
         }
