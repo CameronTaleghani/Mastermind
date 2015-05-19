@@ -95,6 +95,8 @@ public class MastermindGraphics extends JComponent
         add( fHardButton );
 
         fOrangeButton = new OrangeButton();
+        fOrangeButton.setContentAreaFilled(true);
+        fOrangeButton.setOpaque(true);
         fOrangeButton.setBounds(20, 40, 100, 100);
         fOrangeButton.setBackground(Color.ORANGE);
         fOrangeButton.setOpaque(true);
@@ -574,7 +576,6 @@ public class MastermindGraphics extends JComponent
             fSlot3.setBackground(Color.GRAY);
             fSlot4.setBackground(Color.GRAY);
 
-            computerSequence.generateRandomColorSequence();
             userGuess = new MastermindColorSequence();
 
             for (int i = 0; i < guessAnalysis.length; i++)
@@ -616,7 +617,6 @@ public class MastermindGraphics extends JComponent
             fSlot3.setBackground(Color.GRAY);
             fSlot4.setBackground(Color.GRAY);
 
-            computerSequence.generateRandomColorSequence();
             userGuess = new MastermindColorSequence();
 
             for (int i = 0; i < guessAnalysis.length; i++)
@@ -657,7 +657,6 @@ public class MastermindGraphics extends JComponent
             fSlot3.setBackground(Color.GRAY);
             fSlot4.setBackground(Color.GRAY);
 
-            computerSequence.generateRandomColorSequence();
             userGuess = new MastermindColorSequence();
 
             for (int i = 0; i < guessAnalysis.length; i++)
