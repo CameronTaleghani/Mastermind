@@ -101,8 +101,7 @@ public class MastermindColorSequence
                 analysisCount++;
             }
         }
-        //3352
-        //1545
+
         for(int i = guess.size() - 1; i >= 0; i--)
         {
             for(int j = computerSequence.size() - 1; j >= 0; j--)
