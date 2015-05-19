@@ -7,7 +7,7 @@ import javax.swing.*;
  */
 public class MastermindMain
 {
-    static final int DISPLAY_WIDTH  = 865;
+    static final int DISPLAY_WIDTH  = 885;
     static final int DISPLAY_HEIGHT = 800;
 
     public static void main(String[] args)

@@ -12,7 +12,7 @@ public class MastermindGraphics extends JComponent
     //choose to use an int here because there are three states the game can be in: won, lost, or neither
     private int isGameWon;
     private MastermindColorSequence userGuess;
-    private int[] guessAnalysis;
+    private MastermindColorSequence computerSequence;
     private int colorSet;
     private int turnCounter;
 
@@ -26,6 +26,8 @@ public class MastermindGraphics extends JComponent
      * 5 = yellow
      * 6 = magenta
      * Zero I have left out so that we can use that for uncolored
+     * 7 = Black
+     * 8 = White
      */
     private EasyButton fEasyButton;
     private MediumButton fMediumButton;
@@ -43,16 +45,29 @@ public class MastermindGraphics extends JComponent
     private CheckGuessButton fCheckGuess;
     private BackButton fBackButton;
 
-
+    /**
+     * Constructor for component class. Sets everything up.
+     * @param width screen width
+     * @param height screen height
+     *
+     * Method by Sam
+     */
     public MastermindGraphics(int width, int height)
     {
         fWidth = width;
         fHeight = height;
         isGameRunning = false;
         userGuess = new MastermindColorSequence();
+        computerSequence = new MastermindColorSequence();
+        computerSequence.generateRandomColorSequence();
         init();
     }
 
+    /**
+     * Method containing all the button initializations. Keeps them out of the way
+     *
+     * Method by Sam
+     */
     public void init()
     {
         setSize( fWidth, fHeight );
@@ -94,26 +109,34 @@ public class MastermindGraphics extends JComponent
         add( fMagentaButton );
 
         fCheckGuess = new CheckGuessButton();
-        fCheckGuess.setBounds(415, 620, 150, 36);
+        fCheckGuess.setBounds(365, 620, 150, 36);
         add( fCheckGuess );
 
         fSlot1 = new Slot1Button();
-        fSlot1.setBounds(180, 450, 150, 150);
+        fSlot1.setBounds(160, 450, 130, 130);
         add( fSlot1 );
 
         fSlot2 = new Slot2Button();
-        fSlot2.setBounds(340, 450, 150, 150);
+        fSlot2.setBounds(300, 450, 130, 130);
         add( fSlot2 );
 
         fSlot3 = new Slot3Button();
-        fSlot3.setBounds(500, 450, 150, 150);
+        fSlot3.setBounds(440, 450, 130, 130);
         add( fSlot3 );
 
         fSlot4 = new Slot4Button();
-        fSlot4.setBounds(660, 450, 150, 150);
+        fSlot4.setBounds(580, 450, 130, 130);
         add( fSlot4 );
     }
 
+    /**
+     * paintComponent class. Creates the screen. Has a boolean flag to determine if
+     * the level select screen is up or game screen is up. Then draws dependent on that.
+     *
+     * @param g graphics
+     *
+     * Method by Sam
+     */
     public void paintComponent(Graphics g)
     {
         if (!isGameRunning)
@@ -123,6 +146,84 @@ public class MastermindGraphics extends JComponent
         else
         {
             GameScreenConstants(g);
+//            int[] userCurrent = userGuess.get;
+//            int Xtemp = 160;
+//            for(int color : userCurrent)
+//            {
+//                switch (color)
+//                {
+//                    case 0:
+//                    {
+//                        g.setColor(Color.GRAY);
+//                        break;
+//                    }
+//                    case 1:
+//                    {
+//                        g.setColor(Color.ORANGE);
+//                        break;
+//                    }
+//                    case 2:
+//                    {
+//                        g.setColor(Color.RED);
+//                        break;
+//                    }
+//                    case 3:
+//                    {
+//                        g.setColor(Color.GREEN);
+//                        break;
+//                    }
+//                    case 4:
+//                    {
+//                        g.setColor(Color.BLUE);
+//                        break;
+//                    }
+//                    case 5:
+//                    {
+//                        g.setColor(Color.YELLOW);
+//                        break;
+//                    }
+//                    case 6:
+//                    {
+//                        g.setColor(Color.MAGENTA);
+//                        break;
+//                    }
+//                }
+//                g.fillRect(Xtemp, 450, 130, 130);
+//                Xtemp += 140;
+//            }
+//            for (int index = 0; index < guessAnalysis.length; index++)
+//            {
+//                int feedback = guessAnalysis[index];
+//                switch (feedback)
+//                {
+//                    case 7:
+//                    {
+//                        g.setColor(Color.BLACK);
+//                        break;
+//                    }
+//                    case 8:
+//                    {
+//                        g.setColor(Color.WHITE);
+//                        break;
+//                    }
+//                }
+//                if (index == 0)
+//                {
+//                    g.fillOval(720, 450, 60, 60);
+//                }
+//                else if (index == 1)
+//                {
+//                    g.fillOval(785, 450, 60, 60);
+//                }
+//                else if (index == 2)
+//                {
+//                    g.fillOval(720, 515, 60, 60);
+//                }
+//                else
+//                {
+//                    g.fillOval(785, 515, 60, 60);
+//                }
+//            }
         }
 
         repaint();
@@ -138,6 +239,9 @@ public class MastermindGraphics extends JComponent
 
         fHardButton.setVisible(true);
         fHardButton.setEnabled(true);
+
+        g.setColor(Color.DARK_GRAY);
+        g.fillRect(0, 0, 885, 800);
 
         fOrangeButton.setVisible(false);
         fRedButton.setVisible(false);
@@ -183,12 +287,26 @@ public class MastermindGraphics extends JComponent
         fHardButton.setVisible(false);
         fHardButton.setEnabled(false);
 
-        fOrangeButton.setVisible(true);
-        fRedButton.setVisible(true);
-        fGreenButton.setVisible(true);
-        fBlueButton.setVisible(true);
-        fYellowButton.setVisible(true);
-        fMagentaButton.setVisible(true);
+        g.setColor(Color.DARK_GRAY);
+        g.fillRect(0, 0, 885, 800);
+
+        g.setColor(Color.ORANGE);
+        g.fillRect(20, 40, 100, 100);
+
+        g.setColor(Color.RED);
+        g.fillRect(20, 150, 100, 100);
+
+        g.setColor(Color.GREEN);
+        g.fillRect(20, 260, 100, 100);
+
+        g.setColor(Color.BLUE);
+        g.fillRect(20, 370, 100, 100);
+
+        g.setColor(Color.YELLOW);
+        g.fillRect(20, 480, 100, 100);
+
+        g.setColor(Color.MAGENTA);
+        g.fillRect(20, 590, 100, 100);
 
         fOrangeButton.setEnabled(true);
         fRedButton.setEnabled(true);
