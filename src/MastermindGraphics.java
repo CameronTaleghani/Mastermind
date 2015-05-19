@@ -140,7 +140,7 @@ public class MastermindGraphics extends JComponent
 
         fCheckGuess = new CheckGuessButton();
         fCheckGuess.setBounds(365, 620, 150, 36);
-        add( fCheckGuess );
+        add(fCheckGuess);
 
         fSlot1 = new Slot1Button();
         fSlot1.setBounds(160, 450, 130, 130);
@@ -154,14 +154,14 @@ public class MastermindGraphics extends JComponent
         fSlot2.setBackground(Color.GRAY);
         fSlot2.setOpaque(true);
         fSlot2.setBorderPainted(false);
-        add( fSlot2 );
+        add(fSlot2);
 
         fSlot3 = new Slot3Button();
         fSlot3.setBounds(440, 450, 130, 130);
         fSlot3.setBackground(Color.GRAY);
         fSlot3.setOpaque(true);
         fSlot3.setBorderPainted(false);
-        add( fSlot3 );
+        add(fSlot3);
 
         fSlot4 = new Slot4Button();
         fSlot4.setBounds(580, 450, 130, 130);
@@ -869,7 +869,12 @@ public class MastermindGraphics extends JComponent
                 tempArr[index] = userGuess.getColorSequence().get(index);
             }
             userGuessHistory.add(tempArr);
-            userGuessHistory.add(guessAnalysis);
+            int[] tempAnalysis = new int[4];
+            for(int i = 0; i < guessAnalysis.length; i++)
+            {
+                tempAnalysis[i] = guessAnalysis[i];
+            }
+            userGuessHistory.add(tempAnalysis);
             turnCounter--;
 
             System.out.println("After");
