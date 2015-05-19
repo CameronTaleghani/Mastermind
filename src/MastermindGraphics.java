@@ -17,7 +17,7 @@ public class MastermindGraphics extends JComponent
     private MastermindColorSequence userGuess;
     private MastermindColorSequence computerSequence;
     int [] guessAnalysis;
-    private List<MastermindColorSequence> userGuessHistory;
+    private List<int[]> userGuessHistory;
     private int colorSet;
     private int turnCounter;
     private int numTotalGuesses;
@@ -449,9 +449,9 @@ public class MastermindGraphics extends JComponent
             int Y2temp = 47;
             for (int i = 0; i < userGuessHistory.size(); i++)
             {
-                for (int index = 0; index < userGuessHistory.get(i).getColorSequence().size(); index++)
+                for (int index = 0; index < userGuessHistory.get(i).length; index++)
                 {
-                    int color = userGuessHistory.get(i).getColorSequence().get(index);
+                    int color = userGuessHistory.get(i)[index];
                     switch (color)
                     {
                         case 0:
@@ -638,7 +638,6 @@ public class MastermindGraphics extends JComponent
         public void actionPerformed(ActionEvent e)
         {
             colorSet = 1;
-            System.out.print(colorSet);
 
             repaint();
         }
@@ -788,18 +787,14 @@ public class MastermindGraphics extends JComponent
             {
                 isGameWon = 1;
             }
-            List<Integer> userTemp = new ArrayList<>();
-            for(int i = 0; i < userGuess.getColorSequence().size(); i++)
+            int[] tempArr = new int[userGuess.getColorSequence().size()];
+            for (int index = 0; index < userGuess.getColorSequence().size(); index++)
             {
-                temp.add(userGuess.getColorSequence().get(i));
+                tempArr[index] = userGuess.getColorSequence().get(index);
             }
-            MastermindColorSequence Temp = new MastermindColorSequence();
-            Temp.setColorSequence(userTemp);
-            Temp.checkGuess(temp);
-            userGuessHistory.add(Temp);
+            userGuessHistory.add(tempArr);
+            userGuessHistory.add(guessAnalysis);
             turnCounter--;
-
-            repaint();
         }
     }
 
